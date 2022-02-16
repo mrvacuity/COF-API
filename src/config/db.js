@@ -172,6 +172,7 @@ db.customerModel.prototype.toJSON = function () {
   return values;
 };
 
-// db.score_model.sync({ force: true });
+// db.test_model.sync({ force: true });
+// db.component_model.sync({});
 
 export default db;

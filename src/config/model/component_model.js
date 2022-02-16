@@ -10,7 +10,7 @@ const user_model = (sequelize, Sequelize) => {
       type: Sequelize.TEXT,
     },
     image_url: {
-      type: Sequelize.TEXT,
+      type: Sequelize.JSON,
     },
     title: {
       type: Sequelize.TEXT,

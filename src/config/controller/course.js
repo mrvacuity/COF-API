@@ -79,12 +79,82 @@ const createlike = async (req, res) => {
         data: ree,
       });
     } else {
-      const data = await bannerModel.create(req.body);
+      const data = await bannerModel.create({
+        uid: req.user.id,
+        feed_id: req.query.feed_id,
+      });
 
       res.status(200).json({
         data: data,
       });
     }
+  } catch (error) {
+    res.status(500).send({
+      message:
+        error.message || "Some error occurred while creating the Tutorial.",
+    });
+  }
+};
+
+const getalllike = async (req, res) => {
+  try {
+    const condition = await bannerModel.findAll({
+      where: {
+        uid: req.user.id,
+      },
+      include: [
+        {
+          model: feed_model,
+          as: "like_models",
+        },
+      ],
+    });
+
+    const ccc = await Promise.all(
+      condition.map(async (item) => {
+        const commentss = await comment.findAll({
+          where: {
+            feed_id: item.dataValues.like_models.dataValues.id,
+          },
+        });
+
+        const comments = await Promise.all(
+          commentss.map(async (value) => {
+            const user = await users.findOne({
+              where: {
+                id: value.dataValues.uid,
+              },
+            });
+
+            return { ...value.dataValues, comment_models: user };
+          })
+        );
+
+        const user = await users.findOne({
+          where: {
+            id: item.dataValues.like_models.dataValues.uid,
+          },
+        });
+
+        const allLike = await bannerModel.findAll({
+          where: {
+            feed_id: item.dataValues.like_models.dataValues.id,
+          },
+        });
+
+        return {
+          ...item.dataValues,
+          info: item.dataValues.like_models,
+          comment_models: comments,
+          user_model: user.dataValues,
+          like_models: allLike,
+        };
+      })
+    );
+
+    res.status(200).json({
+      data: ccc,
+    });
   } catch (error) {
     res.status(500).send({
       message:
@@ -136,9 +206,69 @@ const createfeed = async (req, res) => {
   }
 };
 
+const deletefeed = async (req, res) => {
+  try {
+    const data = await feed_model.destroy({
+      where: {
+        id: req.query.id,
+      },
+    });
+
+    res.status(200).json({
+      data: data,
+    });
+  } catch (error) {
+    res.status(500).send({
+      message:
+        error.message || "Some error occurred while creating the Tutorial.",
+    });
+  }
+};
+
+const updatefeed = async (req, res) => {
+  try {
+    const data = await feed_model.update(
+      { ...req.body },
+      {
+        where: {
+          id: req.body.id,
+        },
+      }
+    );
+
+    res.status(200).json({
+      data: data,
+    });
+  } catch (error) {
+    res.status(500).send({
+      message:
+        error.message || "Some error occurred while creating the Tutorial.",
+    });
+  }
+};
+
 const createhistory = async (req, res) => {
   try {
     const data = await history_model.create({ ...req.body, uid: req.user.id });
+    res.status(200).json({
+      data: data,
+    });
+  } catch (error) {
+    res.status(500).send({
+      message:
+        error.message || "Some error occurred while creating the Tutorial.",
+    });
+  }
+};
+
+const updatehistory = async (req, res) => {
+  try {
+    const data = await history_model.update(
+      { ...req.body },
+      {
+        where: { id: req.body.id },
+      }
+    );
     res.status(200).json({
       data: data,
     });
@@ -219,18 +349,56 @@ const getcourse = async (req, res) => {
   }
 };
 
+const updatecomponent = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const update = await component_model.update(req.body, {
+      where: { id: id },
+    });
+    res.json(update);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const deletecomponent = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const update = await component_model.destroy({
+      where: { id: id },
+    });
+    res.json(update);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 // Update a Tutorial by the id in the request
 const update = async (req, res) => {
   try {
     const id = req.params.id;
 
-    const update = await course_model.update(req.body, {
+    const update = await lesson.update(req.body, {
       where: { id: id },
     });
-    const response = await Tutorial.findByPk(id);
-    return response;
+    res.json(update);
   } catch (error) {
-    return;
+    res.status(500).send(error);
+  }
+};
+
+const deletecourse = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const update = await lesson.destroy({
+      where: { id: id },
+    });
+    res.json(update);
+  } catch (error) {
+    res.status(500).send(error);
   }
 };
 
@@ -366,6 +534,7 @@ export default {
   createlesson,
   createscore,
   update,
+  updatehistory,
   getcourseById,
   getcourse,
   getallhistory,
@@ -376,6 +545,12 @@ export default {
   createtest,
   createlike,
   score,
+  updatefeed,
   gettest,
+  getalllike,
+  deletefeed,
   checkcondition,
+  deletecourse,
+  deletecomponent,
+  updatecomponent,
 };

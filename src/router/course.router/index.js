@@ -9,30 +9,29 @@ app.post("/createcomponent", course.creatcomponent_model);
 app.post("/createtest", course.createtest);
 app.get("/gettest/:id", course.gettest);
 
-app.put("/updatelesson/:id", course.update);
+app.put("/updatecomponent/:id", course.updatecomponent);
+app.delete("/deletecomponent/:id", course.deletecomponent);
+app.delete("/deletelesson/:id", course.deletecourse);
 app.get("/getalllesson", course.getcourse);
 app.get("/getlesson/:id", course.getcourseById);
+app.put("/updatelesson/:id", course.update);
 app.post("/createhistory", authenticateToken, course.createhistory);
+app.put("/updatehistory", authenticateToken, course.updatehistory);
 app.get("/getallhistory", authenticateToken, course.getallhistory);
 app.post("/createfeed", authenticateToken, course.createfeed);
+app.put("/updatefeed", authenticateToken, course.updatefeed);
+
+app.delete("/deletefeed", course.deletefeed);
 app.post("/createcomment", authenticateToken, course.createcomment);
 app.get("/checkcondition/:id", authenticateToken, course.checkcondition);
-
 app.get("/getallfeed", authenticateToken, course.getallfeed);
 app.get("/getfeed/:id", course.getfeed);
 app.get("/allreport", authenticateToken, course.allreport);
 app.post("/createreport", authenticateToken, course.createreport);
 app.post("/createscore", authenticateToken, course.createscore);
 app.get("/like", authenticateToken, course.createlike);
+app.get("/alllike", authenticateToken, course.getalllike);
 
 app.get("/score", authenticateToken, course.score);
-
-// app.post('/update/:id', course.update);
-// app.get('/getall', course.getcourse);
-// app.get('/get/:id',authenticateToken, course.getcourseById);
-
-// app.post('/update/:id', course.update);
-// app.get('/getall', course.getcourse);
-// app.get('/get/:id',authenticateToken, course.getcourseById);
 
 export default app;

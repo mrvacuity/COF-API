@@ -12,6 +12,9 @@ const user_model = (sequelize, Sequelize) => {
     total: {
       type: Sequelize.TEXT,
     },
+    description: {
+      type: Sequelize.TEXT,
+    },
   });
 
   return collapseModel;
