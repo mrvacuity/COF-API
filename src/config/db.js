@@ -16,7 +16,7 @@ import test_model from "./model/test_model.js";
 import fs from "fs";
 import path from "path";
 const __dirname = path.resolve();
-const rdsCa = fs.readFileSync(__dirname + "/rmc-ca-certificate.crt");
+const rdsCa = fs.readFileSync(__dirname + "/ca-certificate.crt");
 dotenv.config();
 
 const sequelize = new Sequelize(
@@ -36,6 +36,7 @@ const sequelize = new Sequelize(
     },
   }
 );
+console.log(process.env);
 const db = {};
 
 db.Sequelize = Sequelize;

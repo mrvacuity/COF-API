@@ -6,6 +6,9 @@ const user_model = (sequelize, Sequelize) => {
     image_url: {
       type: Sequelize.TEXT,
     },
+    description: {
+      type: Sequelize.TEXT,
+    }
   });
 
   return collapseModel;

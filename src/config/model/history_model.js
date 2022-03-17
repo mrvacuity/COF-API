@@ -15,6 +15,27 @@ const user_model = (sequelize, Sequelize) => {
     description: {
       type: Sequelize.TEXT,
     },
+    brand: {
+      type: Sequelize.TEXT,
+    },
+    species: {
+      type: Sequelize.TEXT,
+    },
+    source: {
+      type: Sequelize.TEXT,
+    },
+    quantity: {
+      type: Sequelize.INTEGER,
+    },
+    temp: {
+      type: Sequelize.INTEGER,
+    },
+    timeh: {
+      type: Sequelize.INTEGER,
+    },
+    timem: {
+      type: Sequelize.INTEGER,
+    },
   });
 
   return collapseModel;
