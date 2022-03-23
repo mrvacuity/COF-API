@@ -3,13 +3,7 @@ const user_model = (sequelize, Sequelize) => {
     Sour: {
       type: Sequelize.TEXT,
     },
-    Sweet: {
-      type: Sequelize.TEXT,
-    },
     image_url: {
-      type: Sequelize.TEXT,
-    },
-    total: {
       type: Sequelize.TEXT,
     },
     description: {
@@ -25,7 +19,7 @@ const user_model = (sequelize, Sequelize) => {
       type: Sequelize.TEXT,
     },
     quantity: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.NUMERIC,
     },
     temp: {
       type: Sequelize.INTEGER,
