@@ -22,7 +22,7 @@ const user_model = (sequelize, Sequelize) => {
       type: Sequelize.NUMERIC,
     },
     temp: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.NUMERIC,
     },
     timeh: {
       type: Sequelize.INTEGER,
