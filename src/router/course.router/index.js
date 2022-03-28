@@ -8,6 +8,7 @@ app.post("/createlesson", course.createlesson);
 app.post("/createcomponent", course.creatcomponent_model);
 app.post("/createtest", course.createtest);
 app.get("/gettest/:id", course.gettest);
+app.delete("/deletetest/:id", course.deletetest);
 
 app.put("/updatecomponent/:id", course.updatecomponent);
 app.delete("/deletecomponent/:id", course.deletecomponent);

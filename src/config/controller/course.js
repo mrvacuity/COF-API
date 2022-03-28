@@ -45,6 +45,20 @@ const gettest = async (req, res) => {
   }
 };
 
+const deletetest = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const update = await test_model.destroy({
+      where: { id: id },
+    });
+    res.json(update);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+
 const creatcomponent_model = async (req, res) => {
   try {
     const data = await component_model.create(req.body);
