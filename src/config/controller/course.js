@@ -560,6 +560,7 @@ export default {
   allreport,
   creatcomponent_model,
   createtest,
+  deletetest,
   createlike,
   score,
   updatefeed,
