@@ -19,6 +19,7 @@ async function generateAccessToken(username) {
 
 // Create and Save a new Tutorial
 const create = async (req, res) => {
+  console.log("hello")
   try {
     if (req.body.first_name == null) {
       res.status(400).send({

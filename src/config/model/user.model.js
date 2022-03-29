@@ -1,3 +1,4 @@
+// http://165.22.251.6
 const user_model = (sequelize, Sequelize) => {
   const collapseModel = sequelize.define("customer_model", {
     Type: {
@@ -22,9 +23,9 @@ const user_model = (sequelize, Sequelize) => {
       unique: true,
       type: Sequelize.TEXT,
     },
-    birth_date: {
-      type: Sequelize.TEXT,
-    },
+    // birth_date: {
+    //   type: Sequelize.TEXT,
+    // },
     password: {
       type: Sequelize.TEXT,
     },
