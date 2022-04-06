@@ -507,9 +507,7 @@ const allreport = async (req, res) => {
   try {
     const { page } = req.query;
 
-    const data = await report_model.findAll({
-      where: { uid: req.user.id },
-    });
+    const data = await report_model.findAll({});
 
     res.json(data);
   } catch (err) {
