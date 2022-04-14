@@ -23,9 +23,6 @@ const user_model = (sequelize, Sequelize) => {
       unique: true,
       type: Sequelize.TEXT,
     },
-    // birth_date: {
-    //   type: Sequelize.TEXT,
-    // },
     password: {
       type: Sequelize.TEXT,
     },

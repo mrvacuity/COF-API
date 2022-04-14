@@ -169,7 +169,6 @@ db.customerModel.prototype.toJSON = function () {
   delete values.salt;
   delete values.createdAt;
   delete values.updatedAt;
-
   return values;
 };
 
