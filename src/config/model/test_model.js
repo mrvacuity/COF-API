@@ -1,8 +1,5 @@
 const user_model = (sequelize, Sequelize) => {
   const collapseModel = sequelize.define("test_model", {
-    image_url: {
-      type: Sequelize.TEXT,
-    },
     title: {
       type: Sequelize.TEXT,
     },
