@@ -30,6 +30,9 @@ const user_model = (sequelize, Sequelize) => {
     timem: {
       type: Sequelize.INTEGER,
     },
+    timer: {
+      type: Sequelize.NUMERIC,
+    },
   });
 
   return collapseModel;

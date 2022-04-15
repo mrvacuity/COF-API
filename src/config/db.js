@@ -12,8 +12,8 @@ import lesson from "./model/lesson_model.js";
 import report_model from "./model/report_model.js";
 import score_model from "./model/score_model.js";
 import test_model from "./model/test_model.js";
-
 import fs from "fs";
+// 062 791 7111
 import path from "path";
 const __dirname = path.resolve();
 const rdsCa = fs.readFileSync(__dirname + "/ca-certificate.crt");
